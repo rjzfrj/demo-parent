@@ -23,6 +23,7 @@
     <module>rebbitmq-demo</module>
     <module>mina-socket-demo</module>
     <module>readwritetxt</module>
+    <module>shiro-demo</module>
   </modules>
   	<properties>
 		<!-- Common libs -->
