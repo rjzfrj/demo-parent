@@ -11,12 +11,12 @@
 		<repository>
 			<id>releases</id>
 			<name>Nexus Releases Repository</name>
-			<url>http://192.168.88.15:8082/nexus/content/repositories/releases</url>
+			<url>http://127.0.0.1:8081/nexus/content/repositories/releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>Nexus Snapshots Repository</name>
-			<url>http://192.168.88.15:8082/nexus/content/repositories/snapshots</url>
+			<url>http://127.0.0.1:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
   <modules>
@@ -24,6 +24,7 @@
     <module>mina-socket-demo</module>
     <module>readwritetxt</module>
     <module>shiro-demo</module>
+    <module>shiro-demo2</module>
   </modules>
   	<properties>
 		<!-- Common libs -->
