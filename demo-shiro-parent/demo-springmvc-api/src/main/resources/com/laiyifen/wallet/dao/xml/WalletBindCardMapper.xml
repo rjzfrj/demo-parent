@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laiyifen.wallet.web.dao.WalletBindCardMapper">
+	<resultMap id="BaseResultMap" type="com.laiyifen.wallet.web.domain.WalletBindCard">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="MERCHANT_ID" jdbcType="VARCHAR" property="merchantId" />
+		<result column="USER_NO" jdbcType="VARCHAR" property="userNo" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="CARD_ATTR" jdbcType="VARCHAR" property="cardAttr" />
+		<result column="DEFAULT_STATUS" jdbcType="VARCHAR" property="defaultStatus" />
+		<result column="BANK_NAME" jdbcType="VARCHAR" property="bankName" />
+		<result column="AGREE_NO" jdbcType="VARCHAR" property="agreeNo" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="TRAN_NO" jdbcType="VARCHAR" property="tranNo" />
+		<result column="TRAN_STATUS" jdbcType="VARCHAR" property="tranStatus" />
+		<result column="VALID_DATE" jdbcType="VARCHAR" property="validDate" />
+		<result column="CVV2" jdbcType="VARCHAR" property="cvv2" />
+		<result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+		<result column="ERROR_CAUSE" jdbcType="VARCHAR" property="errorCause" />
+		<result column="ACCT_NAME" jdbcType="VARCHAR" property="acctName" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, MERCHANT_ID, USER_NO, CARD_NO, BANK_CODE,
+		MOBILE,
+		CARD_ATTR, DEFAULT_STATUS, BANK_NAME, AGREE_NO, CREATE_TIME,
+		TRAN_NO,
+		TRAN_STATUS, VALID_DATE, CVV2, ID_CARD, ERROR_CAUSE,ACCT_NAME
+	</sql>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_bind_card
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		wallet_bind_card where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	
+	
+	<delete id="deleteByPrimaryKeyAndMemberIdAndUserNo" parameterType="com.laiyifen.wallet.web.domain.WalletBindCard">
+		DELETE FROM wallet_bind_card	WHERE ID = #{id,jdbcType=VARCHAR} AND MERCHANT_ID=#{merchantId,jdbcType=VARCHAR} AND
+		USER_NO=#{userNo,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.laiyifen.wallet.web.domain.WalletBindCard">
+		insert into wallet_bind_card
+		(ID, MERCHANT_ID, USER_NO, CARD_NO, BANK_CODE,
+		MOBILE, CARD_ATTR,
+		DEFAULT_STATUS, BANK_NAME, AGREE_NO, CREATE_TIME,
+		TRAN_NO, TRAN_STATUS, VALID_DATE, CVV2, ID_CARD, ERROR_CAUSE,ACCT_NAME
+		)
+		values
+		(#{id,jdbcType=VARCHAR},
+		#{merchantId,jdbcType=VARCHAR},
+		#{userNo,jdbcType=VARCHAR},
+		#{cardNo,jdbcType=VARCHAR},
+		#{bankCode,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR},
+		#{cardAttr,jdbcType=VARCHAR},
+		#{defaultStatus,jdbcType=VARCHAR},
+		#{bankName,jdbcType=VARCHAR},
+		#{agreeNo,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{tranNo,jdbcType=VARCHAR},
+		#{tranStatus,jdbcType=VARCHAR},
+		#{validDate,jdbcType=VARCHAR},
+		#{cvv2,jdbcType=VARCHAR},
+		#{idCard,jdbcType=VARCHAR},
+		#{errorCause,jdbcType=VARCHAR},
+		#{acctName,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.laiyifen.wallet.web.domain.WalletBindCard">
+		update wallet_bind_card
+		<set>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+			</if>
+			<if test="userNo != null">
+				USER_NO = #{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode != null">
+				BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="cardAttr != null">
+				CARD_ATTR = #{cardAttr,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultStatus != null">
+				DEFAULT_STATUS = #{defaultStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				BANK_NAME = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="agreeNo != null">
+				AGREE_NO = #{agreeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tranNo != null">
+				TRAN_NO = #{tranNo,jdbcType=VARCHAR},
+			</if>
+			<if test="tranStatus != null">
+				TRAN_STATUS = #{tranStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="validDate != null">
+				VALID_DATE = #{validDate,jdbcType=VARCHAR},
+			</if>
+			<if test="cvv2 != null">
+				CVV2 = #{cvv2,jdbcType=VARCHAR},
+			</if>
+			<if test="idCard != null">
+				ID_CARD = #{idCard,jdbcType=VARCHAR},
+			</if>
+			<if test="errorCause != null">
+				ERROR_CAUSE = #{errorCause,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="queryBindCardList" resultMap="BaseResultMap"
+		parameterType="com.laiyifen.wallet.web.domain.WalletBindCard">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_bind_card
+		<where>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			</if>
+			<if test="userNo != null">
+				and USER_NO = #{userNo,jdbcType=VARCHAR}
+			</if>
+			<if test="tranNo != null">
+				and TRAN_NO = #{tranNo,jdbcType=VARCHAR}
+			</if>
+			<if test="tranStatus != null">
+				and TRAN_STATUS = #{tranStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="cardAttr != null">
+				and CARD_ATTR = #{cardAttr,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by DEFAULT_STATUS DESC,
+		CREATE_TIME DESC
+	</select>
+
+	<!-- 通过数字码查找绑定的银行卡信息 -->
+	<select id="queryBindCardByScanCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT c.bank_name, c.card_no, c.bank_code, c.id,
+		c.mobile
+		FROM
+		wallet_scan_code t, wallet_bind_card c
+		WHERE t.bind_card_id
+		= c.id
+		AND
+		t.scan_code = #{scanCode,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 通过卡号和绑定状态查找绑定的银行卡信息 -->
+	<select id="checkCardNoList" resultMap="BaseResultMap"
+		parameterType="com.laiyifen.wallet.web.domain.WalletBindCard">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_bind_card
+		where
+			(TRAN_STATUS = '01' or TRAN_STATUS = '02')
+			AND MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			AND CARD_NO = #{cardNo,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 通过卡号和会员编号，商户号，绑定状态校验银行卡是否是本人的有效借记卡卡号提现校验使用-->
+	<select id="checkCardValid" resultMap="BaseResultMap"
+		parameterType="com.laiyifen.wallet.web.domain.WalletBindCard">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_bind_card
+		where
+			(CARD_ATTR = '01' and TRAN_STATUS = '02')
+			<if test="id != null">
+				and ID = #{id,jdbcType=VARCHAR}
+			</if>
+			<if test="merchantId != null">
+				and MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			</if>
+			<if test="userNo != null">
+				and USER_NO = #{userNo,jdbcType=VARCHAR}
+			</if>
+	</select>
+	
+	<!-- 通过卡号和会员编号，商户号，绑定状态校验银行卡是否是本人的卡且绑卡成功 快捷支付使用更具客户提供的绑卡id校验是否是本人卡-->
+	<select id="queryCardValid" resultMap="BaseResultMap"
+		parameterType="com.laiyifen.wallet.web.domain.WalletBindCard">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_bind_card
+		where
+			 TRAN_STATUS = '02'
+			<if test="id != null">
+				and ID = #{id,jdbcType=VARCHAR}
+			</if>
+			<if test="merchantId != null">
+				and MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			</if>
+			<if test="userNo != null">
+				and USER_NO = #{userNo,jdbcType=VARCHAR}
+			</if>
+	</select>
+</mapper>

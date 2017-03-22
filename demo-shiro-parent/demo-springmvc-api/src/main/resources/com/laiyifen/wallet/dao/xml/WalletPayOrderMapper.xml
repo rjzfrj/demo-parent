@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laiyifen.wallet.web.dao.WalletPayOrderMapper">
+	<resultMap id="BaseResultMap" type="com.laiyifen.wallet.web.domain.WalletPayOrder">
+		<id column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+		<result column="OUT_ORDER_ID" jdbcType="VARCHAR" property="outOrderId" />
+		<result column="USER_NO" jdbcType="VARCHAR" property="userNo" />
+		<result column="TRAN_AMT" jdbcType="DECIMAL" property="tranAmt" />
+		<result column="NOTIFY_URL" jdbcType="VARCHAR" property="notifyUrl" />
+		<result column="REMARK" jdbcType="VARCHAR" property="remark" />
+		<result column="MERCHANT_ID" jdbcType="VARCHAR" property="merchantId" />
+		<result column="TRAN_TIME" jdbcType="TIMESTAMP" property="tranTime" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="NOTIFY_STATUS" jdbcType="VARCHAR" property="notifyStatus" />
+		<result column="NOTIFY_CNT" jdbcType="NUMERIC" property="notifyCnt" />
+		<result column="TRAN_STATUS" jdbcType="VARCHAR" property="tranStatus" />
+		<result column="TRAN_TYPE" jdbcType="VARCHAR" property="tranType" />
+		<result column="TRAN_SOURCE" jdbcType="VARCHAR" property="tranSource" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+		<result column="ORDER_AMT" jdbcType="DECIMAL" property="orderAmt" />
+		<result column="ERROR_CAUSE" jdbcType="VARCHAR" property="errorCause" />
+		<result column="TRAN_NO" jdbcType="VARCHAR" property="tranNo" />
+		<result column="OTHER_USER_NO" jdbcType="VARCHAR" property="otherUserNo" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ORDER_ID, OUT_ORDER_ID, USER_NO, TRAN_AMT, NOTIFY_URL,
+		REMARK, MERCHANT_ID, TRAN_TIME, CARD_NO, MOBILE,
+		NOTIFY_STATUS,
+		NOTIFY_CNT, TRAN_STATUS, TRAN_TYPE, TRAN_SOURCE, GOODS_NAME,
+		ORDER_AMT, ERROR_CAUSE,TRAN_NO,OTHER_USER_NO
+	</sql>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_pay_order
+		where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="queryWalletPayOrderByTranNo" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_pay_order
+		where TRAN_NO = #{tranNo,jdbcType=VARCHAR}
+	</select>
+
+		<insert id="insert" parameterType="com.allscore.wallet.web.domain.WalletPayOrder">
+		insert into wallet_pay_order
+		(ORDER_ID, OUT_ORDER_ID, USER_NO,
+		TRAN_AMT, NOTIFY_URL, REMARK,
+		MERCHANT_ID, TRAN_TIME,
+		CARD_NO, MOBILE,
+		NOTIFY_STATUS, NOTIFY_CNT,
+		TRAN_STATUS, TRAN_TYPE, TRAN_SOURCE, GOODS_NAME,
+		ORDER_AMT, ERROR_CAUSE,TRAN_NO,OTHER_USER_NO,FEE_AMT,FLAT_FEE,SETTLEMENT_AMOUNT,IS_SETTLE,SETTLE_FLAG 
+		)
+		values
+		(#{orderId,jdbcType=VARCHAR},
+		#{outOrderId,jdbcType=VARCHAR},
+		#{userNo,jdbcType=VARCHAR},
+		#{tranAmt,jdbcType=NUMERIC},
+		#{notifyUrl,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{merchantId,jdbcType=VARCHAR},
+		#{tranTime,jdbcType=TIMESTAMP},
+		#{cardNo,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR},
+		#{notifyStatus,jdbcType=VARCHAR},
+		#{notifyCnt,jdbcType=NUMERIC},
+		#{tranStatus,jdbcType=VARCHAR},
+		#{tranType,jdbcType=VARCHAR},
+		#{tranSource,jdbcType=VARCHAR},
+		#{goodsName,jdbcType=VARCHAR},
+		#{orderAmt,jdbcType=NUMERIC},
+		#{errorCause,jdbcType=VARCHAR},
+		#{tranNo,jdbcType=VARCHAR},
+		#{otherUserNo,jdbcType=VARCHAR},
+		#{feeAmt,jdbcType=NUMERIC},
+		#{flatFee,jdbcType=NUMERIC},
+		#{settlementAmount,jdbcType=NUMERIC},
+		#{isSettle,jdbcType=VARCHAR},
+		#{settleFlag,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.laiyifen.wallet.web.domain.WalletPayOrder">
+		update wallet_pay_order
+		<set>
+			<if test="outOrderId != null">
+				OUT_ORDER_ID = #{outOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="userNo != null">
+				USER_NO = #{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="tranAmt != null">
+				TRAN_AMT = #{tranAmt,jdbcType=NUMERIC},
+			</if>
+			<if test="notifyUrl != null">
+				NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+			</if>
+			<if test="tranTime != null">
+				TRAN_TIME = #{tranTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="notifyStatus != null">
+				NOTIFY_STATUS = #{notifyStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="notifyCnt != null">
+				NOTIFY_CNT = #{notifyCnt,jdbcType=NUMERIC},
+			</if>
+			<if test="tranStatus != null">
+				TRAN_STATUS = #{tranStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="tranType != null">
+				TRAN_TYPE = #{tranType,jdbcType=VARCHAR},
+			</if>
+			<if test="tranSource != null">
+				TRAN_SOURCE = #{tranType,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsName != null">
+				GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+			</if>
+			<if test="orderAmt != null">
+				ORDER_AMT = #{orderAmt,jdbcType=NUMERIC},
+			</if>
+			<if test="errorCause != null">
+				ERROR_CAUSE = #{errorCause,jdbcType=VARCHAR},
+			</if>
+			<if test="tranNo != null">
+				TRAN_NO = #{tranNo,jdbcType=VARCHAR},
+			</if>
+			<if test="otherUserNo != null">
+				OTHER_USER_NO = #{otherUserNo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<update id="updateTranStatus" parameterType="com.laiyifen.wallet.web.domain.WalletPayOrder">
+		update wallet_pay_order
+				SET TRAN_STATUS = #{tranStatus,jdbcType=VARCHAR}
+			WHERE	ORDER_ID = #{orderId,jdbcType=VARCHAR}
+				AND	TRAN_STATUS ='00'
+	</update>
+
+	<select id="queryWalletPayResultNotify" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_pay_order
+		where NOTIFY_STATUS = 0 and (TRAN_STATUS = '01'
+		or TRAN_STATUS = '02')
+	</select>
+	<select id="queryWalletPayOrderByCondition" resultMap="BaseResultMap"
+		parameterType="com.laiyifen.wallet.web.domain.WalletPayOrder">
+		select
+		ORDER_ID, OUT_ORDER_ID, USER_NO, 
+		to_char(TRAN_AMT,'fm99999999999999999990.00') as TRAN_AMT, 
+		NOTIFY_URL, REMARK, MERCHANT_ID, TRAN_TIME, CARD_NO, MOBILE,
+		NOTIFY_STATUS, NOTIFY_CNT, TRAN_STATUS, TRAN_TYPE, TRAN_SOURCE, 
+		GOODS_NAME,
+		to_char(ORDER_AMT,'fm99999999999999999990.00') as ORDER_AMT
+		from wallet_pay_order
+		<where>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			</if>
+			<if test="userNo != null">
+				and USER_NO = #{userNo,jdbcType=VARCHAR}
+			</if>
+			<if test="tranSource != null">
+				and TRAN_SOURCE = #{tranSource,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by TRAN_TIME desc
+	</select>
+	
+	
+	<!-- 根据外部订单号，商户号，用户编号查询订单详情 
+	
+	
+	<select id="selectOrderDetialByOMU" 
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from (
+		select * from wallet_pay_order
+		where
+			 MERCHANT_ID = #{merchantId,jdbcType=VARCHAR} 
+			 AND USER_NO = #{userNo,jdbcType=VARCHAR}	
+			 AND OUT_ORDER_ID = #{outOrderId,jdbcType=VARCHAR}	
+			 ORDER BY TRAN_TIME
+		<![CDATA[ )  where rownum < 2 ]]>
+	</select> 
+	-->
+	<select id="selectOrderDetialByOMU" 
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from (
+		select * from wallet_pay_order
+		<where>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			</if>
+			<if test="userNo != null">
+				and USER_NO = #{userNo,jdbcType=VARCHAR}
+			</if>
+			<if test="orderId != null">
+				AND ORDER_ID = #{orderId,jdbcType=VARCHAR}
+			</if>
+			<if test="outOrderId != null">
+				and OUT_ORDER_ID = #{outOrderId,jdbcType=VARCHAR}
+			</if>
+			<!--  ORDER BY TRAN_TIME DESC -->
+		</where>
+			 
+		<![CDATA[ )  where rownum =1 ]]>
+	</select> 
+	
+	
+	
+	
+	<resultMap id="selectOrdersResultMap" type="java.util.Map">
+		<id column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+		<result column="OUT_ORDER_ID" jdbcType="VARCHAR" property="outOrderId" />
+		<result column="MERCHANT_ID" jdbcType="VARCHAR" property="merchantId" />
+		<result column="USER_NO" jdbcType="VARCHAR" property="userNo" />
+		<result column="TRAN_AMT" jdbcType="DECIMAL" property="tranAmt" />
+		<result column="TRAN_TYPE_NAME" jdbcType="VARCHAR" property="tranTypeName" />
+		<result column="TRAN_STATUS_NAME" jdbcType="VARCHAR" property="tranStatusName" />
+		<result column="TRAN_SOURCE_NAME" jdbcType="VARCHAR" property="tranSourceName" />
+		<result column="TRAN_TIME" jdbcType="TIMESTAMP" property="tranTime" />
+		<result column="TRAN_STATUS" jdbcType="VARCHAR" property="tranStatus" />
+		<result column="TRAN_TYPE" jdbcType="VARCHAR" property="tranType" />
+		<result column="TRAN_SOURCE" jdbcType="VARCHAR" property="tranSource" />
+		<result column="REMARK" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<select id="selectOrders" parameterType="java.util.Map" resultMap="selectOrdersResultMap">
+		select	ORDER_ID ,OUT_ORDER_ID,MERCHANT_ID ,USER_NO ,TRAN_AMT,
+				(CASE TRAN_TYPE WHEN '00' THEN '消费' 
+					WHEN '01' THEN '充值'
+					WHEN '02' THEN '提现'
+					WHEN '03' THEN '转出'
+					WHEN '04' THEN '转入' END ) AS TRAN_TYPE_NAME ,
+				(CASE TRAN_STATUS WHEN '00' THEN '处理中'
+					WHEN '01' THEN '成功'
+					WHEN '02' THEN '失败' END) AS TRAN_STATUS_NAME ,
+				( CASE TRAN_SOURCE WHEN '00' THEN '余额'
+					WHEN '01' THEN '银行卡' END) AS TRAN_SOURCE_NAME,
+				TO_CHAR(TRAN_TIME,'YYYY-MM-DD HH24:MM:SS') AS TRAN_TIME,TRAN_TYPE ,TRAN_STATUS ,TRAN_SOURCE ,REMARK 
+			FROM  wallet_pay_order 
+		<where>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId}
+			</if>
+			<if test="userNo != null ">
+				AND USER_NO = #{userNo}
+			</if>
+			<if test="tranStatus != null">
+				AND TRAN_STATUS = #{tranStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="tranType != null">
+				AND TRAN_TYPE = #{tranType,jdbcType=VARCHAR}
+			</if>
+			<if test="startTime != null">
+				AND  to_char(TRAN_TIME,'YYYY-MM-DD HH24:MI:SS')&gt;=#{startTime,jdbcType=VARCHAR}
+			</if>
+			<if test="endTime !=null">
+				AND  to_char(TRAN_TIME,'YYYY-MM-DD HH24:MI:SS')&lt;=#{endTime,jdbcType=VARCHAR}
+			</if>
+			
+			<!--  ORDER BY TRAN_TIME DESC -->
+		</where>
+		ORDER BY TRAN_TIME DESC
+			 
+	</select> 
+	
+	
+	<!-- 分页一共多少条 -->
+	<select id="selectOrdersCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT	COUNT(*)
+			FROM  wallet_pay_order 
+		<where>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId}
+			</if>
+			<if test="userNo != null">
+				AND USER_NO = #{userNo}
+			</if>
+			<if test="tranStatus != null">
+				AND TRAN_STATUS = #{tranStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="tranType != null">
+				AND TRAN_TYPE = #{tranType,jdbcType=VARCHAR}
+			</if>
+			<if test="startTime != null">
+				AND  to_char(TRAN_TIME,'YYYY-MM-DD HH24:MI:SS')&gt;=#{startTime,jdbcType=VARCHAR}
+			</if>
+			<if test="endTime !=null">
+				AND  to_char(TRAN_TIME,'YYYY-MM-DD HH24:MI:SS')&lt;=#{endTime,jdbcType=VARCHAR}
+			</if>
+			
+		</where>
+			 
+	</select> 
+	<select id="getOrderId"  resultType="java.lang.String">
+		SELECT TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') || TO_CHAR(WX_WALLET_PAY_ORDER_SEQ.NEXTVAL,'FM000000') AS SERIES_NO FROM DUAL
+	</select>
+	
+</mapper>

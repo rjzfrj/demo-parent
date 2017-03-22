@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.laiyifen.wallet.web.dao.WalletVerifyCodeMapper">
+	<resultMap id="BaseResultMap" type="com.laiyifen.wallet.web.domain.WalletVerifyCode">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="MERCHANT_ID" jdbcType="VARCHAR" property="merchantId" />
+		<result column="USER_NO" jdbcType="VARCHAR" property="userNo" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="VERIFY_CODE" jdbcType="VARCHAR" property="verifyCode" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, MERCHANT_ID, USER_NO, MOBILE, VERIFY_CODE, CREATE_TIME
+	</sql>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_verify_code
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insert" parameterType="com.laiyifen.wallet.web.domain.WalletVerifyCode">
+		insert into wallet_verify_code (ID, 
+		MERCHANT_ID, USER_NO, MOBILE, VERIFY_CODE, CREATE_TIME
+		)
+		values (#{id,jdbcType=VARCHAR}, 
+		#{merchantId,jdbcType=VARCHAR},
+		#{userNo,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR},
+		#{verifyCode,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.laiyifen.wallet.web.domain.WalletVerifyCode">
+		update wallet_verify_code
+		<set>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+			</if>
+			<if test="userNo != null">
+				USER_NO = #{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="verifyCode != null">
+				VERIFY_CODE = #{verifyCode,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectVerifyCode" resultMap="BaseResultMap" parameterType="com.laiyifen.wallet.web.domain.WalletVerifyCode">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_verify_code
+		<where>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			</if>
+			<if test="userNo != null">
+				and USER_NO = #{userNo,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+</mapper>

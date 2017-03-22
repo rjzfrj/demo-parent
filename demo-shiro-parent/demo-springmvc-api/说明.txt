@@ -1,0 +1,8 @@
+demo是为了体现springmvc写接口开发的一个demo
+使用了springmvc中注解，spring返回json数据
+使用了springmvc中使用了注解验证
+
+com/my/wallet/web/controller/ApiController.java 是主要的demo体现剩下的好多没删除的就是操作数据库相关的了
+
+
+整体拦截器  com.my.wallet.web.interceptor.WalletNotifyInterceptor 这里可以做签名使用
