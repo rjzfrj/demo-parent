@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.wallet.web.dao.WalletPayOrderTempMapper">
+	<resultMap id="BaseResultMap"
+		type="com.my.wallet.web.domain.WalletPayOrderTemp">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OUT_ORDER_ID" jdbcType="VARCHAR" property="outOrderId" />
+		<result column="USER_NO" jdbcType="VARCHAR" property="userNo" />
+		<result column="TRAN_AMT" jdbcType="DECIMAL" property="tranAmt" />
+		<result column="REMARK" jdbcType="VARCHAR" property="remark" />
+		<result column="MERCHANT_ID" jdbcType="VARCHAR" property="merchantId" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="TRAN_TYPE" jdbcType="VARCHAR" property="tranType" />
+		<result column="TRAN_SOURCE" jdbcType="VARCHAR" property="tranSource" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+		<result column="ORDER_AMT" jdbcType="DECIMAL" property="orderAmt" />
+		<result column="SCAN_CODE" jdbcType="DECIMAL" property="scanCode" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, OUT_ORDER_ID, USER_NO, TRAN_AMT,
+		REMARK, MERCHANT_ID, CREATE_TIME,
+		TRAN_TYPE, TRAN_SOURCE,
+		GOODS_NAME,
+		ORDER_AMT, SCAN_CODE
+	</sql>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_pay_order_temp
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insert" parameterType="com.my.wallet.web.domain.WalletPayOrderTemp">
+		insert into wallet_pay_order_temp
+		(ID, OUT_ORDER_ID, USER_NO,
+		TRAN_AMT, REMARK,
+		MERCHANT_ID, CREATE_TIME,
+		TRAN_TYPE, TRAN_SOURCE, GOODS_NAME,
+		ORDER_AMT, SCAN_CODE
+		)
+		values
+		(#{id,jdbcType=VARCHAR},
+		#{outOrderId,jdbcType=VARCHAR},
+		#{userNo,jdbcType=VARCHAR},
+		#{tranAmt,jdbcType=NUMERIC},
+		#{remark,jdbcType=VARCHAR},
+		#{merchantId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{tranType,jdbcType=VARCHAR},
+		#{tranSource,jdbcType=VARCHAR},
+		#{goodsName,jdbcType=VARCHAR},
+		#{orderAmt,jdbcType=NUMERIC},
+		#{scanCode,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.my.wallet.web.domain.WalletPayOrderTemp">
+		update wallet_pay_order_temp
+		<set>
+			<if test="outOrderId != null">
+				OUT_ORDER_ID = #{outOrderId,jdbcType=VARCHAR},
+			</if>
+			<if test="userNo != null">
+				USER_NO = #{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="tranAmt != null">
+				TRAN_AMT = #{tranAmt,jdbcType=NUMERIC},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tranType != null">
+				TRAN_TYPE = #{tranType,jdbcType=VARCHAR},
+			</if>
+			<if test="tranSource != null">
+				TRAN_SOURCE = #{tranType,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsName != null">
+				GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+			</if>
+			<if test="orderAmt != null">
+				ORDER_AMT = #{orderAmt,jdbcType=NUMERIC},
+			</if>
+			<if test="scanCode != null">
+				SCAN_CODE = #{scanCode,jdbcType=NUMERIC},
+			</if>
+		</set>
+		where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+	</update>
+
+	<select id="queryPayOrderTempByCondition" resultMap="BaseResultMap"
+		parameterType="com.my.wallet.web.domain.WalletPayOrderTemp">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_pay_order_temp
+		<where>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			</if>
+			<if test="userNo != null">
+				and USER_NO = #{userNo,jdbcType=VARCHAR}
+			</if>
+			<if test="scanCode != null">
+				and SCAN_CODE = #{scanCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+	
+	
+</mapper>

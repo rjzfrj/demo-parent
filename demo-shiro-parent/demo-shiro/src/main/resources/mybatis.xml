@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	<!-- <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+		<description>spring和MyBatis完美整合，不需要mybatis的配置映射文件</description>
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		自动扫描mapping.xml文件
+		<property name="mapperLocations" value="classpath*:mappers/**/*.xml" />
+		<property name="typeAliasesPackage" value="org.ibase4j.model.*" />
+		<property name="globalConfig">
+			<bean class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+				<property name="dbColumnUnderline" value="true" />
+				 <property name="sqlInjector">
+				 	<bean class="com.baomidou.mybatisplus.mapper.AutoSqlInjector" />
+				 </property>
+			</bean>
+		</property>
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<description>DAO接口所在包名，Spring会自动查找其下的类</description>
+		<property name="basePackage" value="org.ibase4j.dao.*" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	事务
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+    </bean> -->
+    
+    
+    
+    	
+    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+    	<property name="resultSetLogEnabled" value="true" />
+	</bean>
+	<!-- 配置数据源 -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+<!--		<property name="driverClassName" value="${jdbc.driverClassName}" /> -->
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" /> 
+		<property name="username" value="${jdbc.username}" /> 
+		<property name="password" value="${jdbc.password}" /> 
+		<property name="initialSize" value="${jdbc.initialSize}" /> 
+	    <property name="minIdle" value="${jdbc.minIdle}" /> 
+	    <property name="maxActive" value="${jdbc.maxActive}" /> 
+	    <property name="maxWait" value="${jdbc.maxWait}" /> 
+	    <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" /> 
+	    <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" /> 
+	    <property name="validationQuery" value="${jdbc.validationQuery}" /> 
+	    <property name="testWhileIdle" value="${jdbc.testWhileIdle}" /> 
+	    <property name="testOnBorrow" value="${jdbc.testOnBorrow}" /> 
+	    <property name="testOnReturn" value="${jdbc.testOnReturn}" /> 
+	    <property name="removeAbandoned" value="${jdbc.removeAbandoned}" /> 
+	    <property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" /> 
+<!--	    <property name="logAbandoned" value="${jdbc.logAbandoned}" /> -->
+	    <property name="filters" value="${jdbc.filters}" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+		<property name="proxyFilters">
+	        <list>
+	            <ref bean="log-filter"/>
+	        </list>
+	    </property>
+
+		<!-- 监控数据库 -->
+		<!-- <property name="filters" value="stat" /> -->
+<!--		<property name="filters" value="mergeStat" />-->
+	</bean>
+	
+    
+     <!--创建jdbc数据源 -->
+<!--     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean> -->
+
+    <!-- 配置事务管理  -->
+    <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean> 
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    
+    <!-- 创建SqlSessionFactory，并指定数据源 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+      	<property name="mapperLocations"  >
+			<list>
+				<value>classpath:com/mapper/*.xml</value>
+			</list>
+		</property>
+    </bean>
+
+    <!-- Mapper文件扫描配置工具，Spring将自动扫描对应配置路径下的Mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.github.zhangkaitao.shiro.chapter16.dao" />
+	</bean>
+</beans>

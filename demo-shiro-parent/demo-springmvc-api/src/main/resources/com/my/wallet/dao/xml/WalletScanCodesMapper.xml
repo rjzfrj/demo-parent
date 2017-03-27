@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.wallet.web.dao.WalletScanCodesMapper">
+	<resultMap id="BaseResultMap"
+		type="com.my.wallet.web.domain.WalletScanCodes">
+		<id column="ID" jdbcType="NUMERIC" property="id" />
+		<result column="MERCHANT_ID" jdbcType="VARCHAR" property="merchantId" />
+		<result column="USER_NO" jdbcType="VARCHAR" property="userNo" />
+		<result column="SCAN_CODE" jdbcType="VARCHAR" property="scanCode" />
+		<result column="STATUS" jdbcType="DECIMAL" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="BIND_CARD_ID" jdbcType="VARCHAR" property="bindCardId" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, MERCHANT_ID, USER_NO, SCAN_CODE, STATUS, CREATE_TIME,
+		BIND_CARD_ID
+	</sql>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_scan_code
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insert" parameterType="com.my.wallet.web.domain.WalletAccounts">
+		insert into wallet_scan_code
+		(ID,
+		MERCHANT_ID, USER_NO, SCAN_CODE, STATUS, CREATE_TIME, BIND_CARD_ID
+		)
+		values
+		(#{id,jdbcType=VARCHAR},
+		#{merchantId,jdbcType=VARCHAR},
+		#{userNo,jdbcType=VARCHAR},
+		#{scanCode,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{bindCardId,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.my.wallet.web.domain.WalletScanCodes">
+		update wallet_scan_code
+		<set>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR},
+			</if>
+			<if test="userNo != null">
+				USER_NO = #{userNo,jdbcType=VARCHAR},
+			</if>
+			<if test="scanCode != null">
+				SCAN_CODE = #{scanCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="bindCardId != null">
+				BIND_CARD_ID = #{bindCardId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=NUMERIC}
+	</update>
+
+	<delete id="deleteByConditions" parameterType="com.my.wallet.web.domain.WalletScanCodes">
+		delete from
+		wallet_scan_code where MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+		and USER_NO = #{userNo,jdbcType=VARCHAR}
+	</delete>
+
+	<select id="queryByConditions" resultMap="BaseResultMap"
+		parameterType="com.my.wallet.web.domain.WalletScanCodes">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_scan_code
+		<where>
+			<if test="merchantId != null">
+				MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+			</if>
+			<if test="userNo != null">
+				and USER_NO = #{userNo,jdbcType=VARCHAR}
+			</if>
+			<if test="scanCode != null">
+				and SCAN_CODE = #{scanCode,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+</mapper>

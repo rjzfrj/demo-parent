@@ -128,7 +128,7 @@ public class NotifyTask
 		Map<String, String> params = new HashMap<String, String>();
 		String url = "http://192.168.9.20:8080/wallet/api/home";
 		// String jsonParam =
-		// "{\"method\":\"receive.syxdata\", \"sign\":\"P8TNAVXYelFnZEsUbYzkeO74yryMcj4lpA6kZ+ul4n9BpSRcOOE9/FHvq/LDucSmX/VSDLKEk1SNwP9/8rNOWoKeCVrkx3arAEgRwiW2AKQNRVzADQQzCNDRs6AbNqFWKC2MIadqPpimjUeJAV2k0t8wB+ficp/BGgKkwa7QRnE=\", \"params\":{\"merchantId\":\"1015013101118\", \"notify\":\"http://beta.touch.laiyifen.cn/rpc.php\", \"outOrderId\":\"130414562123652\", \"outOrderTime\":\"20150625180339893\", \"transAmt\":\"1.00\", \"userNo\":\"13942652325\"}}";
+		// "{\"method\":\"receive.syxdata\", \"sign\":\"P8TNAVXYelFnZEsUbYzkeO74yryMcj4lpA6kZ+ul4n9BpSRcOOE9/FHvq/LDucSmX/VSDLKEk1SNwP9/8rNOWoKeCVrkx3arAEgRwiW2AKQNRVzADQQzCNDRs6AbNqFWKC2MIadqPpimjUeJAV2k0t8wB+ficp/BGgKkwa7QRnE=\", \"params\":{\"merchantId\":\"1015013101118\", \"notify\":\"http://beta.touch.my.cn/rpc.php\", \"outOrderId\":\"130414562123652\", \"outOrderTime\":\"20150625180339893\", \"transAmt\":\"1.00\", \"userNo\":\"13942652325\"}}";
 		//
 		// params.put("method", "receive.syxdata");
 		params.put("merchantId", "001015013101118");
@@ -143,7 +143,7 @@ public class NotifyTask
 		// JSONObject json1 = JSONObject.fromObject(strJson);
 		// logger.info(json1.getString("outOrderId"));
 		// String jsonParam =
-		// "{\"method\":\"receive.syxdata\",\"merchantId\":\"1015013101118\",\"notify\":\"http://beta.touch.laiyifen.cn/rpc.php\",\"outOrderId\":\"130414562123652\",\"outOrderTime\":\"20150625180339893\",\"transAmt\":\"1.00\",\"userNo\":\"13942652325\"}";
+		// "{\"method\":\"receive.syxdata\",\"merchantId\":\"1015013101118\",\"notify\":\"http://beta.touch.my.cn/rpc.php\",\"outOrderId\":\"130414562123652\",\"outOrderTime\":\"20150625180339893\",\"transAmt\":\"1.00\",\"userNo\":\"13942652325\"}";
 		String data = RSACoder.createLinkString(params);
 		logger.info("sign source:" + data);
 		String privateKey = RSACoder.getKeys().get("privateKey");

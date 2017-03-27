@@ -46,7 +46,7 @@
     	<!-- 拦截器  
 	<mvc:interceptors>	
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>	
-			<bean class="com.laiyifen.wallet.web.interceptor.WalletNotifyInterceptor"/>
+			<bean class="com.my.wallet.web.interceptor.WalletNotifyInterceptor"/>
 	</mvc:interceptors> -->
 
 	<!-- 国际化消息 -->
