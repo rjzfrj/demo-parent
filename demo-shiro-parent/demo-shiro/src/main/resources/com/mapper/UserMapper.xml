@@ -92,6 +92,12 @@
     from sys_user
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByPrimaryLongName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_user
     where id = #{id,jdbcType=BIGINT}

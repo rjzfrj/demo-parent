@@ -21,7 +21,6 @@ import com.github.zhangkaitao.shiro.chapter16.entity.ResourceExample.Criteria;
  * <p>Version: 1.0
  */
 @Service
-
 public class ResourceServiceImpl implements ResourceService {
 
     @Autowired
@@ -85,7 +84,7 @@ public class ResourceServiceImpl implements ResourceService {
             if(resource.isRootNode()) {
                 continue;
             }
-            if(resource.getType() != Resource.ResourceType.menu) {
+            if(!"menu".equals(resource.getType())) {
                 continue;
             }
             if(!hasPermission(permissions, resource)) {

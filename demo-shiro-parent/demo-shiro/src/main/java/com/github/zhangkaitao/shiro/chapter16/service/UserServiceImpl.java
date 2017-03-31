@@ -1,14 +1,16 @@
 package com.github.zhangkaitao.shiro.chapter16.service;
 
-import com.github.zhangkaitao.shiro.chapter16.dao.UserDao;
-import com.github.zhangkaitao.shiro.chapter16.dao.UserMapper;
-import com.github.zhangkaitao.shiro.chapter16.entity.User;
-import com.github.zhangkaitao.shiro.chapter16.entity.UserExample;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
+import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import com.github.zhangkaitao.shiro.chapter16.dao.UserMapper;
+import com.github.zhangkaitao.shiro.chapter16.entity.User;
+import com.github.zhangkaitao.shiro.chapter16.entity.UserExample;
 
 /**
  * <p>User: Zhang Kaitao
@@ -16,7 +18,6 @@ import java.util.*;
  * <p>Version: 1.0
  */
 @Service
-
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -90,7 +91,10 @@ public class UserServiceImpl implements UserService {
         if(user == null) {
             return Collections.EMPTY_SET;
         }
-        return roleService.findRoles(user.getRoleIds().toArray(new Long[0]));
+        String roleIds=user.getRoleIds();
+        String[] role=roleIds.split(",");
+        Long[] roles=stringToLong(role);
+        return roleService.findRoles(roles);
     }
 
     /**
@@ -103,7 +107,15 @@ public class UserServiceImpl implements UserService {
         if(user == null) {
             return Collections.EMPTY_SET;
         }
-        return roleService.findPermissions(user.getRoleIds().toArray(new Long[0]));
+        String roleIds=user.getRoleIds();
+        String[] role=roleIds.split(",");
+        Long[] roles=stringToLong(role);
+        return roleService.findPermissions(roles);
     }
 
+    public static Long[] stringToLong(String stringArray[]) {
+        if (stringArray == null)
+            return null;
+        return (Long[]) ConvertUtils.convert(stringArray, Long.class);
+    }
 }
