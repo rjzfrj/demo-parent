@@ -55,6 +55,16 @@ public class Test {
 		resourceIds.add(3L);
 		Set<String> permissonst = resourceService.findPermissions(resourceIds);
 		List<Resource> listresou = resourceService.findMenus(permissonst);
+		Resource res=new Resource();
+		res.setId(1L);
+		res.setName("资源2");
+//		res.setParentId(1L);
+//		res.setType("menu");
+//		res.setParentIds("0/1/");
+//		res.setPermission("test:*");
+//		res.setUrl("/test");
+//		res.setAvailable(true);
+		resourceService.updateResource(res);
 
 		
 		OrganizationService organizationService = (OrganizationService) applContext.getBean(OrganizationService.class);

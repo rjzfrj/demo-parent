@@ -35,7 +35,7 @@
         <c:forEach items="${resourceList}" var="resource">
             <tr data-tt-id='${resource.id}' <c:if test="${not resource.rootNode}">data-tt-parent-id='${resource.parentId}'</c:if>>
                 <td>${resource.name}</td>
-                <td>${resource.type.info}</td>
+                <td>${resource.type}</td>
                 <td>${resource.url}</td>
                 <td>${resource.permission}</td>
                 <td>

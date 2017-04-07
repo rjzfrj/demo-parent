@@ -1,5 +1,13 @@
 package com.github.zhangkaitao.shiro.chapter16.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.collections.CollectionUtils;
+
 public class User {
     private Long id;
 
@@ -12,6 +20,8 @@ public class User {
     private String salt;
 
     private String roleIds;
+    
+    private List<Long> roleIdList; //拥有的角色列表
 
     private Boolean locked;
 
@@ -74,4 +84,20 @@ public class User {
     public String getCredentialsSalt() {
         return username + salt;
     }
+
+	public List<Long> getRoleIdList() {
+		String[] roleids=roleIds.split(",");
+		Long[] re=(Long[]) ConvertUtils.convert(roleids, Long.class);
+		   Set<Long> setReso=new HashSet<Long>();
+   		CollectionUtils.addAll(setReso, re);
+   		List<Long> list =new ArrayList<Long>();
+   		list.addAll(setReso);
+		return list;
+	}
+
+	public void setRoleIdList(List<Long> roleIdList) {
+		this.roleIdList = roleIdList;
+	}
+    
+    
 }

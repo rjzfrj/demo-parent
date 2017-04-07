@@ -32,7 +32,7 @@
         <div class="form-group">
             <form:label path="resourceIds">拥有的资源列表：</form:label>
             <form:hidden path="resourceIds"/>
-            <input type="text" id="resourceName" name="resourceName" value="${zhangfn:resourceNames(role.resourceIds)}" readonly>
+            <input type="text" id="resourceName" name="resourceName" value="${zhangfn:resourceNames(role.resourceIdList)}" readonly>
             <a id="menuBtn" href="#">选择</a>
         </div>
 
@@ -70,7 +70,7 @@
             var zNodes =[
                 <c:forEach items="${resourceList}" var="r">
                 <c:if test="${not r.rootNode}">
-                { id:${r.id}, pId:${r.parentId}, name:"${r.name}", checked:${zhangfn:in(role.resourceIds, r.id)}},
+                { id:${r.id}, pId:${r.parentId}, name:"${r.name}", checked:${zhangfn:in(role.resourceIdList, r.id)}},
                 </c:if>
                 </c:forEach>
             ];

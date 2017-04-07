@@ -1,9 +1,12 @@
 package com.github.zhangkaitao.shiro.chapter16.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.springframework.util.CollectionUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 public class Role {
@@ -13,6 +16,7 @@ public class Role {
     private String role; //角色标识 程序中判断使用,如"admin"
     private String description; //角色描述,UI界面显示使用
     private String resourceIds; //拥有的资源
+    private List<Long> resourceIdList; //拥有的资源
     private Boolean available = Boolean.FALSE; //是否可用,如果不可用将不会添加给用户
 
     public Role() {
@@ -107,7 +111,22 @@ public class Role {
         return id != null ? id.hashCode() : 0;
     }
 
-    @Override
+    
+    public List<Long> getResourceIdList() {
+    	String[] resourceids=resourceIds.split(",");
+    	Long[] re=(Long[]) ConvertUtils.convert(resourceids, Long.class);
+		   Set<Long> setResource=new HashSet<Long>();
+		CollectionUtils.addAll(setResource, re);
+		List<Long> list =new ArrayList<Long>();
+		list.addAll(setResource);
+		return list;
+	}
+
+	public void setResourceIdList(List<Long> resourceIdList) {
+		this.resourceIdList = resourceIdList;
+	}
+
+	@Override
     public String toString() {
         return "Role{" +
                 "id=" + id +

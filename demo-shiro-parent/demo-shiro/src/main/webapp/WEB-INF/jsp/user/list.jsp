@@ -31,7 +31,7 @@
             <tr>
                 <td>${user.username}</td>
                 <td>${zhangfn:organizationName(user.organizationId)}</td>
-                <td>${zhangfn:roleNames(user.roleIds)}</td>
+                <td>${zhangfn:roleNames(user.roleIdList)}</td>
                 <td>
                     <shiro:hasPermission name="user:update">
                         <a href="${pageContext.request.contextPath}/user/${user.id}/update">修改</a>

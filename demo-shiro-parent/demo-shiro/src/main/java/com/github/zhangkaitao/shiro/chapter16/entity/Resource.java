@@ -1,5 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter16.entity;
 
+import java.util.List;
+
 public class Resource {
     
     private Long id; //编号
@@ -113,7 +115,9 @@ public class Resource {
         return id != null ? id.hashCode() : 0;
     }
 
-    @Override
+    
+
+	@Override
     public String toString() {
         return "Resource{" +
                 "id=" + id +
