@@ -18,5 +18,6 @@
   	<module>demo-springmvc-api</module>
   	<module>demo-shiro</module>
     <module>demo-shiro-mybatis</module>
+    <module>demo-shiro-two</module>
   </modules>
 </project>
