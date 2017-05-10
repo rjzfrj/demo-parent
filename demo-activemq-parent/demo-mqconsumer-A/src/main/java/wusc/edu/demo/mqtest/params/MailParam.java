@@ -6,7 +6,7 @@ package wusc.edu.demo.mqtest.params;
 /**
  * 
  * @描述: 邮件参数封装类 .
- * @作者: WuShuicheng .
+ *   .
  * @创建时间: 2015-3-18,上午1:08:42 .
  * @版本号: V1.0 .
  */

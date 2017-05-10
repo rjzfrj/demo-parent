@@ -25,7 +25,7 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * 
  * @描述: 队列监听器 .
- * @作者: WuShuicheng .
+ * @作者:  .
  * @创建时间: 2015-3-17,下午11:21:23 .
  * @版本号: V1.0 .
  */

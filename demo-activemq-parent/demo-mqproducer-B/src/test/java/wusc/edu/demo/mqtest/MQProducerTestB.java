@@ -10,7 +10,7 @@ import wusc.edu.demo.mqtest.params.MailParam;
 /**
  * 
  * @描述: ActiveMQ测试启动类 .
- * @作者: WuShuicheng .
+ * @作者:  .
  * @创建时间: 2015-3-17,上午2:25:20 .
  * @版本号: V1.0 .
  */

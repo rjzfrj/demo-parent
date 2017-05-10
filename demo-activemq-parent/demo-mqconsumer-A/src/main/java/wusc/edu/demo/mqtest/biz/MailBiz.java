@@ -16,7 +16,7 @@ import wusc.edu.demo.mqtest.params.MailParam;
 /**
  * 
  * @描述: 邮件发送业务逻辑类 .
- * @作者: WuShuicheng .
+ *   .
  * @创建时间: 2015-3-18,上午1:08:22 .
  * @版本号: V1.0 .
  */
