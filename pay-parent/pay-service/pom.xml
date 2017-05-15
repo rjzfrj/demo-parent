@@ -17,11 +17,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>zf-demo</groupId>
 			<artifactId>pay-common-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+
 		<!-- http://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
 		<dependency>
 			<groupId>commons-httpclient</groupId>
@@ -46,17 +48,13 @@
 			<artifactId>shiro-web</artifactId>
 			<version>1.2.5</version>
 		</dependency>
-		<dependency>
-				<groupId>org.jdom</groupId>
-				<artifactId>jdom</artifactId>
-			</dependency>
+		
 
 	</dependencies>
-	
-	
+
 	<!-- 打包插件 -->
 	<build>
-		<finalName>pay-service</finalName>
+		<finalName>roncoo-pay-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
