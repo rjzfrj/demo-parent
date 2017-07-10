@@ -27,9 +27,8 @@
 		<module>mybase</module>
 		<module>demo-shiro-parent</module>
 		<module>demo-activemq-parent</module>
-<!-- 		<module>pay-parent</module>
- -->
-    <module>reflect</module>
+	    <module>reflect</module>
+	    <module>demo-springmvc-exception</module>
   </modules>
 	<properties>
 		<!-- Common libs -->

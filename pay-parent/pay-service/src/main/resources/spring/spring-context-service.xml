@@ -29,5 +29,5 @@
 
 	<import resource="classpath:spring/spring-mybatis.xml" />
 	<import resource="classpath:spring/spring-activemq.xml" />
-	<import resource="classpath:spring/spring-reconciliation.xml" />
+<!-- 	<import resource="classpath:spring/spring-reconciliation.xml" /> -->
 </beans>
