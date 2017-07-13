@@ -1,0 +1,48 @@
+
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="  
+               http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans.xsd  
+               http://www.springframework.org/schema/batch  
+               http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+	<beans:bean id="first-tasklet"
+		class="com.coderli.spring.batch.firstjob.FirstTasklet"></beans:bean>
+
+	<beans:bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+		<beans:property name="transactionManager" ref="transactionManager" />
+	</beans:bean>
+
+	<beans:bean id="transactionManager"
+		class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"></beans:bean>
+
+	<job id="onecoder-job">
+		<step id="first-step" next="secend-step">
+			<tasklet ref="first-tasklet"></tasklet>
+		</step>
+		<step id="secend-step">
+			<tasklet>
+				<chunk reader="myReader" writer="myWriter" processor="myProcessor"
+					commit-interval="1"></chunk>
+			</tasklet>
+		</step>
+	</job>
+
+	<beans:bean id="myReader" class="com.coderli.spring.batch.firstjob.MyReader"></beans:bean>
+	<beans:bean id="myWriter" class="com.coderli.spring.batch.firstjob.MyWriter"></beans:bean>
+	<beans:bean id="myProcessor"
+		class="com.coderli.spring.batch.firstjob.MyProcessor"></beans:bean>
+	<beans:bean id="myFirstJobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<beans:property name="taskExecutor" ref="syncTaskExecutor" />
+		<beans:property name="jobRepository" ref="jobRepository" />
+	</beans:bean>
+	<beans:bean id="syncTaskExecutor"
+		class="org.springframework.core.task.SyncTaskExecutor" />
+	<beans:bean id="jobLauncherTestUtils"
+		class="org.springframework.batch.test.JobLauncherTestUtils">
+		<beans:property name="job" ref="onecoder-job"></beans:property>
+	</beans:bean>
+
+</beans:beans>  

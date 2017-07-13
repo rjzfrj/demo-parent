@@ -29,6 +29,8 @@
 		<module>demo-activemq-parent</module>
 	    <module>reflect</module>
 	    <module>demo-springmvc-exception</module>
+    <module>demo-springBatch</module>
+    <module>springbatch01</module>
   </modules>
 	<properties>
 		<!-- Common libs -->

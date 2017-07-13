@@ -1,0 +1,14 @@
+receiptDate,memberName,checkNumber,checkDate,paymentType,depositAmount,paymentAmount,comments
+02/22/09,Person1,1432,02/22/09,Offertery,$50.00,$0.00,comments
+02/22/09,Person2,900,02/22/09,Offertery,$20.00,$0.00,comments
+02/22/09,Person3,1802,02/14/09,Membership,$800.00,$0.00,comments
+02/22/09,Person4,5281,02/22/09,Membership,$500.00,$0.00,split check
+02/22/09,Person6,1803,02/14/09,Charity,$100.00,$0.00,comments
+02/22/09,Person7,1803,02/14/09,Charity,$50.00,$0.00,comments
+02/22/09,Person8,1151,03/01/09,Membership,$500.00,$0.00,comments
+02/28/09,Person8,1152,03/01/09,Membership,$250.00,$0.00,comments
+03/01/09,Person8,1153,03/01/09,Membership,$50.00,$0.00,comments
+02/22/09,Person1,1432,02/22/09,Offertery,$50.00,$0.00,comments
+02/22/09,Person2,900,02/22/09,Offertery,$20.00,$0.00,comments
+02/22/09,Person3,1802,02/14/09,Membership,$800.00,$0.00,comments
+02/22/09,Person4,5281,02/22/09,Membership,$500.00,$0.00,split check
