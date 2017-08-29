@@ -1,0 +1,8 @@
+部署项目 用tomcat启动 不知道为什么用jetty启动会报错
+请求路径：http://localhost:8080/ssm_excel/
+上传properties包下的SIMExcelImport.xlsx文件，
+如果成功，则转到数据显示页面，刷新数据库可以看到新的数据记录,同时在本地D盘下会看到temp文件夹，里面有SIMExcelImport.xlsx文件的副本
+如果不成功，显示error页面
+
+MySQL数据库 .sql文件：properties/s_sim.sql
+测试数据：properties/SIMExcelImport.xlsx

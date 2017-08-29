@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.luo.dao.SSimDao" >
+  <resultMap id="BaseResultMap" type="com.luo.domain.SSim" >
+    <id column="CCID" property="ccid" jdbcType="VARCHAR" />
+    <result column="SIM" property="sim" jdbcType="VARCHAR" />
+    <result column="IMSI" property="imsi" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="COMBO" property="combo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="E_ID" property="eId" jdbcType="VARCHAR" />
+    <result column="U_ID" property="uId" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.luo.domain.SSim" extends="BaseResultMap" >
+    <result column="REMARK" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CCID, SIM, IMSI, STATUS, COMBO, NAME, TYPE, E_ID, U_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    REMARK
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from s_sim
+    where CCID = #{ccid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.luo.domain.SSim" >
+    insert into s_sim
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ccid != null" >
+        CCID,
+      </if>
+      <if test="sim != null" >
+        SIM,
+      </if>
+      <if test="imsi != null" >
+        IMSI,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="combo != null" >
+        COMBO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="eId != null" >
+        E_ID,
+      </if>
+      <if test="uId != null" >
+        U_ID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ccid != null" >
+        #{ccid,jdbcType=VARCHAR},
+      </if>
+      <if test="sim != null" >
+        #{sim,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null" >
+        #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="combo != null" >
+        #{combo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="eId != null" >
+        #{eId,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectAllSSims" resultMap="ResultMapWithBLOBs">
+  	SELECT * FROM s_sim WHERE 1=1
+  </select>
+</mapper>
