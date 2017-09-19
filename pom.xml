@@ -32,6 +32,8 @@
     <module>demo-springBatch</module>
     <module>springbatch01</module>
     <module>execlImplExpt</module>
+    <module>execlExpt</module>
+    <module>my-cloud</module>
   </modules>
 	<properties>
 		<!-- Common libs -->
