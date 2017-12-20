@@ -27,7 +27,11 @@
   	<module>service-feign</module>
     <module>service-zuul</module>
     <module>config-server</module>
+	<module>config-server-authc</module>
+    <module>config-server-eureka</module>
     <module>SpringcloudConfig</module>
     <module>config</module>
+    <module>config-client</module>
+    <module>test</module>
   </modules>
 </project>
