@@ -48,7 +48,7 @@ public class Send
 		//第八步：发送
 		for (int i = 0; i < 10; i++) {
 			TextMessage textMessage=session.createTextMessage(); 
-	    	textMessage.setText("我是消息"+i);
+			textMessage.setText("我是消息"+i);
 			messageConsumer.send(textMessage);
 			
 			messageConsumer.send(textMessage, //消息
