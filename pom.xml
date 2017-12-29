@@ -34,7 +34,9 @@
     <module>execlImplExpt</module>
     <module>execlExpt</module>
     <module>my-cloud</module>
-  </modules>
+    <module>demo-socket-io</module>
+    <module>demo-netty-scoket</module>
+	</modules>
 	<properties>
 		<!-- Common libs -->
 		<project_parent_version>0.0.3-SNAPSHOT</project_parent_version>
