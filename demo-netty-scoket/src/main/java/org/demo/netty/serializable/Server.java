@@ -1,4 +1,4 @@
-package org.demo.netty.serial;
+package org.demo.netty.serializable;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -12,7 +12,13 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
+/**
+ * 知识点：序列化使用marshalling 包来序列化
+ *
+ */
 public class Server {
 
 	
@@ -23,25 +29,23 @@ public class Server {
 		b.group(boosGroup,workGroup) //把两个工作线程加入进来
 		.channel( NioServerSocketChannel.class) //要使用NioServerSocketChannel 这种类型的通道
 		.option(ChannelOption.SO_BACKLOG, 1024)
-		.option(ChannelOption.SO_SNDBUF, 1024*32)
-		.option(ChannelOption.SO_RCVBUF, 1024*32)
+//		.option(ChannelOption.SO_SNDBUF, 1024*32)
+//		.option(ChannelOption.SO_RCVBUF, 1024*32)
+		.handler(new LoggingHandler(LogLevel.INFO))  //设置启动日志
 		//一定要使用 childHandler 去绑定具体的 事件处理器
 		.childHandler(new ChannelInitializer<SocketChannel>() {
 			@Override
 			protected void initChannel(SocketChannel sc) throws Exception {
 				//设置特殊分割符来拆包
-				ByteBuf buf=Unpooled.copiedBuffer("$_".getBytes());
-				sc.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, buf));
-				sc.pipeline().addLast(new StringDecoder()); //设置字符串形式的解码器
+				sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingDecoder());
+				sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
 				sc.pipeline().addLast(new ServerHandler());   //以后需要做的就是这个ServerHandler的内容其他都是模板方式的
 			}
 		});
 		//绑定指定的端口 进行监听
 		ChannelFuture f=b.bind(8765).sync();
-		ChannelFuture f2=b.bind(8766).sync();
 		//Thread.sleep(1000000);
 		f.channel().closeFuture().sync();
-		f2.channel().closeFuture().sync();
 		workGroup.shutdownGracefully();
 		workGroup.shutdownGracefully();
 		

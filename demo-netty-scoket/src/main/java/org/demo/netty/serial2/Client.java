@@ -1,4 +1,4 @@
-package org.demo.netty.serial;
+package org.demo.netty.serial2;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -13,7 +13,7 @@ import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 
 /**
- * 解决粘包方案1 使用特殊的分隔符来解决粘包问题
+ * 解决粘包方案2  使用订定长的方式拆包
  *
  */
 public class Client {

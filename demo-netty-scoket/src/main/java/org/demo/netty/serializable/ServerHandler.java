@@ -1,4 +1,4 @@
-package org.demo.netty.serial;
+package org.demo.netty.serializable;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
@@ -13,13 +13,14 @@ public class ServerHandler extends ChannelHandlerAdapter {
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		try {
 			//do something msg
-			String request = (String)msg;
-			System.out.println("Service: " + request);
-			String response="服务器得到数据:"+request+"并响应OK$_";
+			Resp req = (Resp)msg;
+			System.out.println("Client : " + req);			
 			//写给客户端
-			ChannelFuture cf= ctx.writeAndFlush(Unpooled.copiedBuffer(response.getBytes()));
-			cf.addListener(ChannelFutureListener.CLOSE);  //加上这句话就是短链接 当客户端请求服务端响应完了后断开链接  如果不加这句话客户端和服务器端是一直长连接的
-			
+			Resp resp = new Resp();
+			resp.setId(req.getId());
+			resp.setName("resp" + req.getId());
+			resp.setResponseMessage("响应内容" + req.getId());
+			ctx.writeAndFlush(resp);//.addListener(ChannelFutureListener.CLOSE);
 		} finally {
 			ReferenceCountUtil.release(msg);
 		}

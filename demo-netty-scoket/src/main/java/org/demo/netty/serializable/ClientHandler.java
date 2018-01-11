@@ -1,4 +1,4 @@
-package org.demo.netty.serial;
+package org.demo.netty.serializable;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
@@ -17,9 +17,8 @@ public class ClientHandler extends ChannelHandlerAdapter {
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		try {
 			//得到服务器响应数据
-			String request = (String)msg;
-			System.out.println("Client: " + request);
-			
+			Resp resp = (Resp)msg;
+			System.out.println("Client : " + resp);		
 			
 		} finally {
 			//释放资源

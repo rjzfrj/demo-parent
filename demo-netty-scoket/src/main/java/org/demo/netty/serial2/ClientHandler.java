@@ -1,4 +1,4 @@
-package org.demo.netty.serial;
+package org.demo.netty.serial2;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;

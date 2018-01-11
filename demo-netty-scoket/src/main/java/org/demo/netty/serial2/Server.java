@@ -1,4 +1,4 @@
-package org.demo.netty.serial;
+package org.demo.netty.serial2;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -12,7 +12,10 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
-
+/**
+ * 解决粘包方案2  使用订定长的方式拆包
+ *
+ */
 public class Server {
 
 	

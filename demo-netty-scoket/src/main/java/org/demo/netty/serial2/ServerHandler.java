@@ -1,4 +1,4 @@
-package org.demo.netty.serial;
+package org.demo.netty.serial2;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;

@@ -1,4 +1,9 @@
-package org.demo.netty.serial;
+package org.demo.netty.serializable;
+
+import java.io.File;
+import java.io.FileInputStream;
+
+import org.demo.util.GzipUtils;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -27,25 +32,31 @@ public class Client {
 		.handler(new ChannelInitializer<SocketChannel>() {
 			@Override
 			protected void initChannel(SocketChannel sc) throws Exception {
-				ByteBuf buf=Unpooled.copiedBuffer("$_".getBytes());
-				sc.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, buf));
-				sc.pipeline().addLast(new StringDecoder()); //设置字符串形式的解码器
+				sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingDecoder());
+				sc.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
 				sc.pipeline().addLast(new ClientHandler());
 			}
 		});
 
-		ChannelFuture cf1 = b.connect("127.0.0.1", 8765).sync();
-		ChannelFuture cf2 = b.connect("127.0.0.1", 8766).sync();
+		ChannelFuture cf = b.connect("127.0.0.1", 8765).sync();
 
-		// 以特色的分隔符来解决粘包问题
-		cf1.channel().write(Unpooled.copiedBuffer("test hello$_".getBytes()));
-		cf1.channel().write(Unpooled.copiedBuffer("hello word$_".getBytes()));
-		cf1.channel().write(Unpooled.copiedBuffer("what do you do$_".getBytes()));
-		cf1.channel().flush();
-		cf1.channel().closeFuture().sync();
-		cf2.channel().write(Unpooled.copiedBuffer("dddddd$_".getBytes()));
-		cf2.channel().flush();
-		cf2.channel().closeFuture().sync();
+		for (int i = 0; i <5; i++) {
+			Req req = new Req();
+			req.setId("" + i);
+			req.setName("pro" + i);
+			req.setRequestMessage("数据信息" + i);	
+//			String path = System.getProperty("user.dir") + File.separatorChar + "src\\main\\resources" +  File.separatorChar + "001.jpg";
+//			File file = new File(path);
+//	        FileInputStream in = new FileInputStream(file);  
+//	        byte[] data = new byte[in.available()];  
+//	        in.read(data);  
+//	        in.close(); 
+//			req.setAttachment(GzipUtils.gzip(data));
+			cf.channel().writeAndFlush(req);
+			
+		}
+		cf.channel().flush();
+		cf.channel().closeFuture().sync();
 		workgroup.shutdownGracefully();
 
 	}
