@@ -38,7 +38,8 @@
         <module>demo-redis</module>
         <module>demo-single</module>
 		<module>jvm-test</module>
-	</modules>
+        <module>juc-demo</module>
+    </modules>
 	<properties>
 		<!-- Common libs -->
 		<project_parent_version>0.0.3-SNAPSHOT</project_parent_version>
@@ -591,8 +592,8 @@
 					<verbose>true</verbose>
 					<fork>true</fork>
 					<compilerArgument>-nowarn</compilerArgument>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
