@@ -1,4 +1,4 @@
-package com.zf.lock;
+package com.zf.concurrent.lock;
 
 import java.util.Optional;
 import java.util.concurrent.locks.Lock;
@@ -60,7 +60,7 @@ class MyData{
 
 }
 
-public class ReentryLockDemo {
+public class ReenterLockDemo {
 
     public static void main(String[] args) {
 

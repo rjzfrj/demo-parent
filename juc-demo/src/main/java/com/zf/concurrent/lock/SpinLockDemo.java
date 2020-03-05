@@ -1,25 +1,28 @@
-package com.zf.lock;
+package com.zf.concurrent.lock;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @auther: zf
  * @date: 2020-03-03 17:57
- * @description:
+ * @description: 自旋锁 核心关键是利用compareAndSet 利用AtomicReference类型利用Thread这样就可以控制线程了
+ *
  */
 
 class MyLock{
-    AtomicInteger atomicInteger=new AtomicInteger(0);
+    AtomicReference<Thread> atomicReference =new AtomicReference<Thread>();
 
     public  void lock() {
         do {
 //            System.out.println("Thread = [" + Thread.currentThread().getName() + "]");
-        } while (!atomicInteger.compareAndSet(0,1));
-
+        } while (!atomicReference.compareAndSet(null,Thread.currentThread()));
+        //cas比较设置完成 如果没人用这个是true就过了别的线程此时此刻再来获取锁因为atomicReference中不为null所以自旋等待
+        //
     }
 
     public  void unlock() {
-        atomicInteger.compareAndSet(1,0);
+//        解锁巧妙使用 compareAndSet 修改设置成0来实现解锁
+        atomicReference.compareAndSet(Thread.currentThread(),null);
     }
 
 }
@@ -31,7 +34,7 @@ public class SpinLockDemo {
 
     public static void main(String[] args)throws Exception {
 
-        MyLock myLock=new MyLock()
+        MyLock myLock=new MyLock();
         new Thread(()->{
             myLock.lock();
             System.out.println("进入"+Thread.currentThread().getName());
