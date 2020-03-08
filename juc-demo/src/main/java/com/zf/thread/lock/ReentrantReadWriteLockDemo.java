@@ -1,4 +1,4 @@
-package com.zf.concurrent.lock;
+package com.zf.thread.lock;
 
 import java.util.HashMap;
 import java.util.Map;
