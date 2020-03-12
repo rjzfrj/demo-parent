@@ -1,5 +1,8 @@
-package com.zf.jvm;
+package com.zf.jvm.oom;
 
+/**
+ * 一直创建线程会报
+ */
 public class UnableToCreateNewNativeThreadDemo {
 
     public static void main(String[] args) {
