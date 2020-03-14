@@ -38,7 +38,7 @@
         <module>demo-redis</module>
         <module>demo-single</module>
 		<module>jvm-test</module>
-        <module>juc-demo</module>
+        <module>java-demo</module>
     </modules>
 	<properties>
 		<!-- Common libs -->
