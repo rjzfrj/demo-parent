@@ -16,8 +16,8 @@ public class BlockingQueueDemo {
         BlockingQueue<String> blockingDeque=new ArrayBlockingQueue<String>(2);
 //      groupOne(blockingDeque);
 //        groupTwo(blockingDeque);
-//        groupThree(blockingDeque);
-        groupFour(blockingDeque);
+        groupThree(blockingDeque);
+//        groupFour(blockingDeque);
     }
 
 
