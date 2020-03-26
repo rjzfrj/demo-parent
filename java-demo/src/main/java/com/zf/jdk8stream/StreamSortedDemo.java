@@ -1,9 +1,6 @@
 package com.zf.jdk8stream;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -21,6 +18,11 @@ public class StreamSortedDemo {
         System.out.println("------");
        List<Integer> retList= list.stream().sorted().collect(Collectors.toList());
         System.out.println(retList);
+        System.out.println("======收集器的======");
+        Set<Integer> retList2= list.stream().sorted().collect(Collectors.toSet());
+        System.out.println(retList2);
+
+
         System.out.println("------");
        List<Integer> descList= list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         System.out.println(descList);
@@ -40,6 +42,10 @@ public class StreamSortedDemo {
         System.out.println(descUserList.get(0));
         System.out.println("-----=======");
         descUserList.forEach(System.out::println);
+        System.out.println("--------数据器成一个map");
+        Map<String,Integer> descUserMap= userList.stream().sorted(Comparator.comparing(User::getAge).reversed()).collect(Collectors.toMap(user->user.getName(),user->user.getAge()));
+        System.out.println(descUserMap);
+
 
 
 
