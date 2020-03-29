@@ -1,4 +1,4 @@
-package com.zf.jdk8stream;
+package com.zf.jdk8.stream;
 
 import java.util.*;
 import java.util.stream.Collectors;
