@@ -39,6 +39,7 @@
         <module>demo-single</module>
 		<module>jvm-test</module>
         <module>java-demo</module>
+		<module>demo-netty</module>
     </modules>
 	<properties>
 		<!-- Common libs -->
