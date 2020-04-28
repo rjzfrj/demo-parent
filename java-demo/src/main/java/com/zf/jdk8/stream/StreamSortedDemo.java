@@ -46,12 +46,52 @@ public class StreamSortedDemo {
         Map<String,Integer> descUserMap= userList.stream().sorted(Comparator.comparing(User::getAge).reversed()).collect(Collectors.toMap(user->user.getName(),user->user.getAge()));
         System.out.println(descUserMap);
 
+        //转换成其DTO的示例
+        List list2=userList.stream().map(e-> new UserDTO(e.getName(),e.getAge()+"")).collect(Collectors.toList());
+
+        System.out.println(list2);
+
+
 
 
 
     }
 
 
+}
+
+class UserDTO{
+    private String name;
+    private String age;
+
+    public UserDTO(String name, String age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
 
 class User{
