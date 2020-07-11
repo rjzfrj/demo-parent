@@ -25,7 +25,8 @@ public class NIOFileChannel {
 
     private static void write() throws IOException {
         String str="hello xx nio";
-        FileOutputStream fileOutputStream=new FileOutputStream("d:\\file.txt");
+//        FileOutputStream fileOutputStream=new FileOutputStream("d:\\file.txt");
+        FileOutputStream fileOutputStream=new FileOutputStream("/Users/lucy/file.txt");
         FileChannel fileChannel=fileOutputStream.getChannel();
 
         ByteBuffer byteBuffer=ByteBuffer.allocate(1024);

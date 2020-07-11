@@ -35,7 +35,6 @@
     <module>my-cloud</module>
     <module>demo-socket-io</module>
     <module>demo-netty-scoket</module>
-        <module>demo-redis</module>
         <module>demo-single</module>
 		<module>jvm-test</module>
         <module>java-demo</module>
