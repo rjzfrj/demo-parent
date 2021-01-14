@@ -55,7 +55,7 @@
 		<mybatis_version>3.2.5</mybatis_version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<shiro-varsion>1.2.3</shiro-varsion>
-		<poi-version>3.13</poi-version>
+		<poi-version>4.1.2</poi-version>
 		<javassist.version>3.12.1.GA</javassist.version>
 		<transaction.version>1.1</transaction.version>
 		<cglib.version>3.2.2</cglib.version>
