@@ -52,7 +52,7 @@
 		<zkclient_version>0.1</zkclient_version>
 		<commons_logging_api_version>1.1</commons_logging_api_version>
 		<gateway_intf_version>2.7.7-SNAPSHOT</gateway_intf_version>
-		<mybatis_version>3.2.5</mybatis_version>
+		<mybatis_version>3.5.6</mybatis_version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<shiro-varsion>1.2.3</shiro-varsion>
 		<poi-version>3.13</poi-version>
