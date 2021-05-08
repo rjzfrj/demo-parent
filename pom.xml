@@ -54,7 +54,7 @@
 		<gateway_intf_version>2.7.7-SNAPSHOT</gateway_intf_version>
 		<mybatis_version>3.2.5</mybatis_version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<shiro-varsion>1.2.3</shiro-varsion>
+		<shiro-varsion>1.6.0</shiro-varsion>
 		<poi-version>3.13</poi-version>
 		<javassist.version>3.12.1.GA</javassist.version>
 		<transaction.version>1.1</transaction.version>
