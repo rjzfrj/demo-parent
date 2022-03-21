@@ -48,7 +48,7 @@
 		<commons_lang3_version>3.4</commons_lang3_version>
 		<slf4j_version>1.7.6</slf4j_version>
 		<log4j_version>1.2.16</log4j_version>
-		<dubbo_version>2.5.3</dubbo_version>
+		<dubbo_version>2.6.9</dubbo_version>
 		<zkclient_version>0.1</zkclient_version>
 		<commons_logging_api_version>1.1</commons_logging_api_version>
 		<gateway_intf_version>2.7.7-SNAPSHOT</gateway_intf_version>
