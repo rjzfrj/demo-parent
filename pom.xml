@@ -43,7 +43,7 @@
 	<properties>
 		<!-- Common libs -->
 		<project_parent_version>0.0.3-SNAPSHOT</project_parent_version>
-		<org.springframework.version>4.0.0.RELEASE</org.springframework.version>
+		<org.springframework.version>6.0.0</org.springframework.version>
 		<jackson_version>1.9.13</jackson_version>
 		<commons_lang3_version>3.4</commons_lang3_version>
 		<slf4j_version>1.7.6</slf4j_version>
